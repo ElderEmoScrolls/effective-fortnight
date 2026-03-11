@@ -1,0 +1,40 @@
+body {
+font-family: Arial;
+background:#0f172a;
+color:white;
+margin:40px;
+}
+
+h1 {
+margin-bottom:30px;
+}
+
+.grid {
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.card {
+background:#1e293b;
+padding:20px;
+border-radius:8px;
+}
+
+table {
+width:100%;
+border-collapse:collapse;
+}
+
+th, td {
+padding:10px;
+text-align:left;
+}
+
+th {
+border-bottom:1px solid #334155;
+}
+
+tr:nth-child(even) {
+background:#111827;
+}
