@@ -90,3 +90,10 @@ table.appendChild(row)
 })
 
 }
+
+document.getElementById("criticalCount").innerText = severityCount.Critical
+document.getElementById("highCount").innerText = severityCount.High
+document.getElementById("totalFindings").innerText = findings.length
+
+const assets = new Set(findings.map(f=>f.asset))
+document.getElementById("assetCount").innerText = assets.size
