@@ -31,6 +31,10 @@ timeline[f.date]++
 createSeverityChart(severityCount)
 createTimelineChart(timeline)
 populateTable(findings)
+populateAssetTable(findings)
+populateActivity(findings)
+
+updateSummary(findings, severityCount)
 
 })
 
@@ -91,37 +95,18 @@ table.appendChild(row)
 
 }
 
+function updateSummary(findings,severityCount){
+
 document.getElementById("criticalCount").innerText = severityCount.Critical
 document.getElementById("highCount").innerText = severityCount.High
 document.getElementById("totalFindings").innerText = findings.length
 
 const assets = new Set(findings.map(f=>f.asset))
 document.getElementById("assetCount").innerText = assets.size
-}
-
-<div class="card">
-<h2>Asset Risk Overview</h2>
-
-<table id="assetTable">
-
-<thead>
-<tr>
-<th>Asset</th>
-<th>Critical</th>
-<th>High</th>
-<th>Total</th>
-</tr>
-</thead>
-
-<tbody></tbody>
-
-</table>
-
-</div>
 
 }
 
-function populateAssetTable("findings.json"){
+function populateAssetTable(findings){
 
 const assets={}
 
@@ -156,3 +141,25 @@ table.appendChild(row)
 })
 
 }
+
+function populateActivity(findings){
+
+const sorted=[...findings].sort((a,b)=>new Date(b.date)-new Date(a.date))
+
+const feed=document.getElementById("activityFeed")
+
+sorted.slice(0,10).forEach(f=>{
+
+const item=document.createElement("li")
+
+item.innerText=`${f.severity} – ${f.title} – ${f.asset}`
+
+feed.appendChild(item)
+
+})
+
+}
+
+setTimeout(()=>{
+location.reload()
+},60000)
