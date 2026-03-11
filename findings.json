@@ -1,0 +1,31 @@
+{
+  "engagement": "External Web App Pentest",
+  "client": "Example Corp",
+  "start_date": "2026-03-07",
+  "findings": [
+    {
+      "title": "SQL Injection",
+      "severity": "Critical",
+      "asset": "login.example.com",
+      "category": "Injection",
+      "status": "Open",
+      "date": "2026-03-07"
+    },
+    {
+      "title": "IDOR",
+      "severity": "High",
+      "asset": "api.example.com",
+      "category": "Access Control",
+      "status": "Open",
+      "date": "2026-03-08"
+    },
+    {
+      "title": "Missing Security Headers",
+      "severity": "Low",
+      "asset": "web.example.com",
+      "category": "Misconfiguration",
+      "status": "Open",
+      "date": "2026-03-08"
+    }
+  ]
+}
