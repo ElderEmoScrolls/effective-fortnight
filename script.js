@@ -97,3 +97,62 @@ document.getElementById("totalFindings").innerText = findings.length
 
 const assets = new Set(findings.map(f=>f.asset))
 document.getElementById("assetCount").innerText = assets.size
+}
+
+<div class="card">
+<h2>Asset Risk Overview</h2>
+
+<table id="assetTable">
+
+<thead>
+<tr>
+<th>Asset</th>
+<th>Critical</th>
+<th>High</th>
+<th>Total</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+}
+
+function populateAssetTable(findings){
+
+const assets={}
+
+findings.forEach(f=>{
+
+if(!assets[f.asset]){
+assets[f.asset]={critical:0,high:0,total:0}
+}
+
+if(f.severity==="Critical") assets[f.asset].critical++
+if(f.severity==="High") assets[f.asset].high++
+
+assets[f.asset].total++
+
+})
+
+const table=document.querySelector("#assetTable tbody")
+
+Object.entries(assets).forEach(([asset,data])=>{
+
+const row=document.createElement("tr")
+
+row.innerHTML=`
+<td>${asset}</td>
+<td>${data.critical}</td>
+<td>${data.high}</td>
+<td>${data.total}</td>
+`
+
+table.appendChild(row)
+
+})
+
+}
