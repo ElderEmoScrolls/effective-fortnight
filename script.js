@@ -121,7 +121,7 @@ document.getElementById("assetCount").innerText = assets.size
 
 }
 
-function populateAssetTable(findings){
+function populateAssetTable("findings.json"){
 
 const assets={}
 
