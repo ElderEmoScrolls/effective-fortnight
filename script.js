@@ -97,7 +97,7 @@ findings.forEach(f => {
 const row = document.createElement("tr")
 
 row.innerHTML = `
-<td>${f.severity}</td>
+<td class="severity-${f.severity.toLowerCase()}">${f.severity}</td>
 <td>${f.title}</td>
 <td>${f.asset}</td>
 <td>${f.date}</td>
