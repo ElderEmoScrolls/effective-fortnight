@@ -96,6 +96,9 @@ findings.forEach(f => {
 
 const row = document.createElement("tr")
 
+/* add severity class to row */
+row.classList.add("severity-row-" + f.severity.toLowerCase())
+
 row.innerHTML = `
 <td class="severity-${f.severity.toLowerCase()}">${f.severity}</td>
 <td>${f.title}</td>
