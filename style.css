@@ -123,13 +123,13 @@ font-weight:bold;
    Used for vulnerability highlighting
 -------------------------------------------------- */
 
-/* Critical findings */
+/* Crit findings */
 .severity-critical{
 color:#ff4d4d;
 font-weight:bold;
+text-shadow:0 0 6px rgba(255,77,77,0.6);
 }
-
-/* High findings */
+/* Hogh findings */
 .severity-high{
 color:#ff9f43;
 font-weight:bold;
@@ -176,6 +176,17 @@ border-bottom:1px solid #203a52;
 .card:hover{
 transform:translateY(-2px);
 transition:0.15s;
+}
+
+
+/* --------------------------------------------------
+   Critical row glow effect
+   Makes critical vulnerabilities visually stand out
+-------------------------------------------------- */
+
+tr:has(.severity-critical){
+background:rgba(255,77,77,0.08);
+box-shadow:inset 0 0 8px rgba(255,77,77,0.35);
 }
 
 
