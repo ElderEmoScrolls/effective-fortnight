@@ -1,8 +1,13 @@
 fetch("findings.json")
-.then(response => response.json())
+.then(response => {
+if (!response.ok) {
+throw new Error("Failed to load findings.json")
+}
+return response.json()
+})
 .then(data => {
 
-const findings = data.findings
+const findings = data.findings || []
 
 const severityCount = {
 Critical:0,
@@ -33,9 +38,11 @@ createTimelineChart(timeline)
 populateTable(findings)
 populateAssetTable(findings)
 populateActivity(findings)
-
 updateSummary(findings, severityCount)
 
+})
+.catch(error=>{
+console.error("Dashboard data load error:", error)
 })
 
 function createSeverityChart(data){
@@ -50,6 +57,10 @@ datasets:[{
 label:"Findings",
 data:Object.values(data)
 }]
+},
+options:{
+responsive:true,
+plugins:{legend:{display:false}}
 }
 }
 )
@@ -66,9 +77,11 @@ data:{
 labels:Object.keys(data),
 datasets:[{
 label:"Findings Discovered",
-data:Object.values(data)
+data:Object.values(data),
+tension:0.3
 }]
-}
+},
+options:{responsive:true}
 }
 )
 
@@ -77,6 +90,7 @@ data:Object.values(data)
 function populateTable(findings){
 
 const table = document.querySelector("#findingsTable tbody")
+table.innerHTML=""
 
 findings.forEach(f => {
 
@@ -124,6 +138,7 @@ assets[f.asset].total++
 })
 
 const table=document.querySelector("#assetTable tbody")
+table.innerHTML=""
 
 Object.entries(assets).forEach(([asset,data])=>{
 
@@ -147,6 +162,7 @@ function populateActivity(findings){
 const sorted=[...findings].sort((a,b)=>new Date(b.date)-new Date(a.date))
 
 const feed=document.getElementById("activityFeed")
+feed.innerHTML=""
 
 sorted.slice(0,10).forEach(f=>{
 
