@@ -26,14 +26,14 @@
       "category": "Misconfiguration",
       "status": "Open",
       "date": "2026-03-08"
-    }
-     {
+    },
+    {
       "title": "Missing Security Headers",
       "severity": "Low",
       "asset": "web.example.com",
       "category": "Misconfiguration",
       "status": "Open",
       "date": "2026-03-08"
-     }
+    }
   ]
 }
